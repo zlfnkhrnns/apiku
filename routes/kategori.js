@@ -5,18 +5,22 @@ const controller = require('../controller');
 
 const multer = require('multer');
 const storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        cb(null,'./assets/gambar');
-    },
-    filename: function(req, file, cb){
-        cb(null, Date.now() + '--' + file.originalname);
-    }
-});
+    destination: (req, file, cb) => {
+        if(file.fieldname === "gambar") {
+            cb(null, "assets/kategori");
+          } else {
+            cb(null, err);
+          }
+        },
+        filename: (req, file, cb) => {
+            cb(null, Date.now() + "--" + file.originalname);
+          },
+        }); 
 const upload = multer({storage: storage});
 
 router.get('/', controller.kategori.getAll);
 router.get('/search', controller.kategori.getSearch);
-router.post('/', upload.single('gambar'), controller.kategori.post);
+router.post('/', upload.fields([{ name: 'gambar', maxCount:1}]), controller.kategori.post);
 router.put('/:nama', controller.kategori.put);
 router.delete('/:nama', controller.kategori.delete);
 

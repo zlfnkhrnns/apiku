@@ -2,16 +2,21 @@ const model = require('../config/model/index');
 const controller = {};
 const { Op } = require('sequelize');
 const db = require('../config/database/mysql');
-const response = require('../res')
 
 controller.getAll = async function(req,res){
     try{
         let indeks = await model.indeks.findAll()
             if(indeks.length > 0){
-                response.lis(indeks, res)
+                res.status(200).json({
+                    message:'Get indeks',
+                    semuaIndeks: indeks
+                })
             } else{
-                console.log(error)
-                }
+                res.status(200).json({
+                    message:"Tidak Ada indeks",
+                    data:[]
+                })
+            }
     } catch (error){
             res.status(404).json({
                 message: error.message
@@ -37,10 +42,16 @@ controller.getSearch = async function(req, res){
             }
         })
         if (indeks.length > 0){
-            response.lis(indeks, res)
-            } else{
-                console.log(error)
-                }
+            res.status(200).json({
+                message:'Get indeks',
+                semuaIndeks: indeks
+            })
+        } else {
+            res.status(200).json({
+                message:"Tidak Ada indeks",
+                data:[]
+            })
+        }
     } catch (error){
         res.status(404).json({
             message: error.message
@@ -58,7 +69,7 @@ controller.post = async function(req, res){
         })
         res.status(201).json({
             message: 'Berhasil Tambah Data indeks',
-            data: indeks
+            semuaIndeks: indeks
         })
     } catch (error){
         res.status(404).json({

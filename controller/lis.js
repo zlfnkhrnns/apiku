@@ -10,7 +10,7 @@ controller.getAll = async function(req, res){
             if(lis.length > 0){
                 res.status(200).json({
                     message:'Get lis',
-                    data: lis
+                    semuaSejarah: lis
                 })
             } else{
                 res.status(200).json({
@@ -47,7 +47,7 @@ controller.getSearch = async function(req, res){
         if (lis.length > 0){
             res.status(200).json({
                 message:'Get lis',
-                data: lis
+                semuaSejarah: lis
             })
         } else {
             res.status(200).json({
@@ -61,25 +61,6 @@ controller.getSearch = async function(req, res){
         })
     }
 }
-// //module.exports = {
-// controller.post = async function(req, res) {
-//     try {
-//         var data = req.body;
-//         if(req.files["rekaman"])
-//             data["rekaman"] = req.files["rekaman"][0].filename;
-
-//         if(req.files["foto"])
-//             data["foto"] = req.files["foto"][0].filename;
-
-//         const result = await this.post(data);
-//         return res.status(201).json(result);
-//     } catch (error){
-//         res.status(404).json({
-//         message: error.message
-//         });
-//     }
-// },
-// //};
 
 controller.post = async function(req, res){
     console.log(req.files)
@@ -97,12 +78,11 @@ controller.post = async function(req, res){
             copyright: req.body.copyright,
             foto: req.files.foto[0].filename,
             download: req.body.download,
-            indeks: req.body.indeks,
-                
+            indeks: req.body.indeks,        
         })
         res.status(201).json({
             message: 'Berhasil Tambah Data lis',
-            data: lis
+            semuaSejarah: lis
         })
     } catch (error){
         res.status(404).json({

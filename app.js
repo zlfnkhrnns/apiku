@@ -17,7 +17,7 @@ app.use('/kategori', kategoriRoutes);
 app.use('/lis', lisRoutes);
 app.use('/indeks', indeksRoutes);
 
-app.use('/assets/gambar', express.static('assets'));
+app.use('/assets/kategori', express.static('assets'));
 app.use('/assets/rekaman', express.static('assets'));
 app.use('/assets/foto', express.static('assets'));
 
