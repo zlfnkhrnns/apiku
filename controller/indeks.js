@@ -87,7 +87,7 @@ controller.put = async function(req, res){
             menit: req.body.menit
         },{
             where:{
-                topik: req.params.topik
+                no: req.params.no
             }
         })
         res.status(200).json({
@@ -104,7 +104,7 @@ controller.delete = async function(req, res){
     try{
         let indeks = await model.indeks.destroy({
             where:{
-                topik: req.params.topik
+                no: req.params.no
             }
         })
         res.status(200).json({

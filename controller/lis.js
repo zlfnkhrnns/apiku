@@ -109,7 +109,7 @@ controller.put = async function(req, res){
             indeks: req.body.indeks,
         },{
             where:{
-                judulSejarah: req.params.judulSejarah
+                indeksId: req.params.indeksId
             }
         })
         res.status(200).json({
@@ -126,7 +126,7 @@ controller.delete = async function(req, res){
     try{
         let lis = await model.lis.destroy({
             where:{
-                judulSejarah: req.params.judulSejarah
+                indeksId: req.params.indeksId
             }
         })
         res.status(200).json({

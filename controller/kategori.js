@@ -61,6 +61,7 @@ controller.getSearch = async function(req, res){
 
 controller.post = async function(req, res){
     try {
+        console.log(req.body)
         let kategori = await model.kategori.create({
             idKategori: req.body.idKategori,
             nama: req.body.nama,
@@ -85,7 +86,7 @@ controller.put = async function(req, res){
             nama: req.body.nama
         },{
             where:{
-                nama: req.params.nama
+                idKategori: req.params.idKategori
             }
         })
         res.status(200).json({
@@ -102,7 +103,7 @@ controller.delete = async function(req, res){
     try{
         let kategori = await model.kategori.destroy({
             where:{
-                nama: req.params.nama
+                idKategori: req.params.idKategori
             }
         })
         res.status(200).json({

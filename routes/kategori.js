@@ -21,7 +21,7 @@ const upload = multer({storage: storage});
 router.get('/', controller.kategori.getAll);
 router.get('/search', controller.kategori.getSearch);
 router.post('/', upload.fields([{ name: 'gambar', maxCount:1}]), controller.kategori.post);
-router.put('/:nama', controller.kategori.put);
-router.delete('/:nama', controller.kategori.delete);
+router.put('/:idKategori', controller.kategori.put);
+router.delete('/:idKategori', controller.kategori.delete);
 
 module.exports = router;
